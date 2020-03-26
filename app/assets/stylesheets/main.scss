@@ -1,25 +1,25 @@
 @import "_variables.scss";
 
-@font-face {
-  font-family: "museo";
-  src: font-url("museo500-regular.ttf");
-  font-weight: bold;
-}
-@font-face {
-  font-family: "museo";
-  src: font-url("museo300-regular.ttf");
-  font-weight: normal;
-}
+// @font-face {
+//   font-family: "museo";
+//   src: font-url("museo500-regular.ttf");
+//   font-weight: bold;
+// }
+// @font-face {
+//   font-family: "museo";
+//   src: font-url("museo300-regular.ttf");
+//   font-weight: normal;
+// }
 
 *{
-    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif !important;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body{
-  background: $grey1;
+  background: $white;
 }
 
 h1, h2, h3, h4, h5{
@@ -50,7 +50,7 @@ a{
 }
 
 .site-header{
-  background: $white;
+  background: $primary;
   padding: 15px;
   // box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
   // position: relative;
@@ -66,7 +66,7 @@ a{
 
 .main-content-area{
   padding: 40px 15px;
-  background: $very-pale;
+  background: $white;
   @media screen and (min-width: $breakpoint){
     padding: 60px 15px 80px 15px;
   }
@@ -98,7 +98,7 @@ a{
 }
 
 .button{
-  background: $yellow;
+  background: $primary;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -108,18 +108,18 @@ a{
   font-weight: bold;
   font-size: 1.1rem;
   text-align: center;
-  color: $grey1;
+  color: $white;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0px 4px 0px darken($yellow, 20);
+  border-radius: 3px;
+  box-shadow: 0px 4px 0px darken($primary, 20);
   &:hover{
-    background: darken($yellow, 10);
+    background: lighten($primary, 10);
   }
   &:active{
     transform: translateY(4px);
-    background: darken($yellow, 20);
+    background: lighten($primary, 20);
     box-shadow: none;
   }
   &:focus{
@@ -137,8 +137,8 @@ a{
 
 .important{
   padding: 25px;
-  background: transparentize($blue2, 0.5);
-  border-left: 4px solid $blue1;
+  background: $pale;
+  border-left: 4px solid $primary;
   margin-bottom: 45px;
   .important__link{
     display: inline-block;
@@ -202,8 +202,8 @@ a{
 }
 
 .beta-banner{
-  background: $very-pale;
-  padding: 10px 15px 0px 15px;
+  /*background: $grey2;*/
+  padding: 10px 15px 10px 15px;
   font-size: 0.9rem;
   .beta-banner__inner{
     display: flex;
