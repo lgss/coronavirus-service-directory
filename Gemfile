@@ -68,3 +68,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'geocoder'
 gem 'httparty'
+
+gem 'rack-wwwhisper', '~> 1.0'
