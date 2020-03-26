@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+    http_basic_authenticate_with name: "ncc", password: "covid19"
 
     def search
         @categories = Service.categories
