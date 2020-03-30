@@ -13,14 +13,14 @@ class Service < ApplicationRecord
   end
 
   def self.categories
+    # Urgent food deliveries, Prescription collection, Digital skills setup to support online shopping, Help with shopping
     [
-      ["Groceries and cooked meals", "food"],
-      ["Dog walking", "pets"],
-      ["Staying social", "social"],
-      ["Financial support", "financial"],
-      ["Book drops and entertainment", "entertainment"],
-      ["Prescription pickups", "prescriptions"],
-      ["Physical and mental wellbeing", "wellbeing"]
+      ["Urgent food deliveries", "Urgent food deliveries"],
+      ["Prescription collection", "Prescription collection"],
+      ["Digital skills setup to support online shopping", "Digital skills setup to support online shopping"],
+      ["Help with shopping", "Help with shopping"],
+      ["Tackling loneliness", "Tackling loneliness"],
+      ["General Community Support", "General Community Support"]
     ]
   end
 
