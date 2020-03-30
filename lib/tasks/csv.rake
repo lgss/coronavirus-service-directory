@@ -48,6 +48,13 @@ task :csv => :environment do
             service.email = row[30]
             service.postcode = row[38]
 
+            # categories
+            categories = []
+            row[42].delete! '[]' # remove existing array brackets
+            categories = row[42].split(",") # comma separated so split the string
+            categories.each(&:lstrip!) # strip whitespace on each array index
+            service.category = categories # add to service object
+
             service.key_point_1 = row[43].capitalize #availabiility
             service.key_point_2 = 'Areas covered ' << row[44] #areas
             service.key_point_3 = 'Further support offered ' << row[45] #further support
