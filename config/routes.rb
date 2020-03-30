@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root "services#search"
 
+  get 'auth/auth0/callback' => 'auth0#callback'
+  get 'auth/failure' => 'auth0#failure'
+  get 'auth/logged-out' => 'auth0#loggedOut'
+  get 'logout' => 'logout#logout'
+
   # public routes
   resources :services, only: [:index] do
     collection do

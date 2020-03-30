@@ -1,6 +1,7 @@
 class ServicesController < ApplicationController
-    http_basic_authenticate_with name: "ncc", password: "covid19"
-
+    #http_basic_authenticate_with name: "ncc", password: "covid19"
+    include Secured
+    
     def search
         @categories = Service.categories
     end
