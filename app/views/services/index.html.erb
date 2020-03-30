@@ -31,6 +31,11 @@
             <header class="service-card__header">
                 <h2 class="service-card__name"><%= s.name %></h2>
                 <p class="service-card__description"><%= s.description %></p>
+                <ul class="service-card__categories">
+                <% s.category.each do |c| %>
+                    <li><%= c %></li>
+                <% end %>
+                </ul>
                 <small class="service-card__distance"><%= s.rough_distance %></small>
             </header>
             <ul class="service-card__key-points">
