@@ -24,9 +24,8 @@
   </div>
   <!-- <div class="results-map-section_map" style="display:none" data-coordinates="<%= @coordinates %>"></div> -->
 </div>
-
-<ol class="service-results">
-    <div class="container">
+<div class="service-results">
+    <ol class="container">
     <% @services.each do |s| %>
         <li class="service-card" data-latitude="<%= s.latitude %>" data-longitude="<%= s.longitude %>">
             <header class="service-card__header">
@@ -57,13 +56,15 @@
             </footer>
         </li>
     <% end %>
-    </div>
+    </ol>
     <ol>
 <section class="safeguarding">
     <h2>Can't find what you need?</h2>
     <p>If you’re worried about yourself or someone you care about, <a href="https://www.northamptonshire.gov.uk/coronavirus-updates/Pages/default.aspx">see our other coronavirus resources</a>.</p>
 </section>
 </ol>
-</ol>
+</div>
+
+<%= session[:userinfo].inspect %>
 
 <% # javascript_pack_tag 'google-maps' %>
