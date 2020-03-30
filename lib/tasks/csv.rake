@@ -8,46 +8,51 @@ task :csv => :environment do
 
     # byebug
 
-    rows.drop(3).each do |row|
+    rows.each do |row|
         service = Service.new
+        #service.form_id = row[0]
+        if row[7].downcase == "individual"
+            # individual
+            service.name = row[9].capitalize
+            service.name << " "
+            service.name << row[10].capitalize
+            
+            service.description = "Individual"
+            
+            #service.url = row[9]
+            service.email = row[11]
+            service.phone = row[12]
+            service.postcode = row[19]
+            #service.availability = row[22]
 
-        service.name = row[0]
-        service.description = row[1]
+            # categories
+            categories = []
+            row[21].delete! '[]' # remove existing array brackets
+            categories = row[21].split(",") # comma separated so split the string
+            categories.each(&:lstrip!) # strip whitespace on each array index
+            service.category = categories # add to service object
+            
+            # service.recommended = row[15]
+            service.key_point_1 = row[22].capitalize #availabiility
+            #service.key_point_2 = 'Areas covered ' << row[44] #areas
+            #service.key_point_3 = 'Further support offered ' << row[45] #further support
+            # service.how_to_contact = row[19]
 
-        categories = []
-        if row[2] && row[2].downcase.strip == "yes"
-            categories.push("food")
-        end
-        if row[3] && row[3].downcase.strip == "yes"
-            categories.push("pets")
-        end
-        if row[4] && row[4].downcase.strip == "yes"
-            categories.push("social")
-        end
-        if row[5] && row[5].downcase.strip == "yes"
-            categories.push("financial")
-        end
-        if row[6] && row[6].downcase.strip == "yes"
-            categories.push("entertainment")
-        end
-        if row[7] && row[7].downcase.strip == "yes"
-            categories.push("prescriptions")
-        end
-        if row[8] && row[8].downcase.strip == "yes"
-            categories.push("wellbeing")
-        end
-        service.category = categories
+            #puts service.inspect
+        else
+            # business
+            service.name = row[28]
+            service.description = 'Contact ' << row[29]
+            #service.url = row[9]
+            service.phone = row[31]
+            service.email = row[30]
+            service.postcode = row[38]
 
-        service.url = row[9]
-        service.phone = row[10]
-        service.email = row[11]
-        service.postcode = row[12]
-        # ...
-        service.recommended = row[15]
-        service.key_point_1 = row[16]
-        service.key_point_2 = row[17]
-        service.key_point_3 = row[18]
-        service.how_to_contact = row[19]
+            service.key_point_1 = row[43].capitalize #availabiility
+            service.key_point_2 = 'Areas covered ' << row[44] #areas
+            service.key_point_3 = 'Further support offered ' << row[45] #further support
+            puts service.inspect
+        end
 
         service.save
     end
