@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
   geocoded_by :postcode
   after_validation :geocode
-
+  scope :filter_by_who, -> (who) { where("description like ?", "#{who}%")}
   def rough_distance
       if distance < 1
         "Less than a mile away"
