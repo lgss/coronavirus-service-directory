@@ -21,7 +21,7 @@ task :csv => :environment do
             
             #service.url = row[9]
             service.email = row[11]
-            service.phone = row[12]
+            service.phone = row[12] && !row[12].start_with?('0','+44') ? '0' << row[12] : row[12]
             service.postcode = row[19]
             #service.availability = row[22]
 
@@ -44,7 +44,7 @@ task :csv => :environment do
             service.name = row[28]
             service.description = 'Contact ' << row[29]
             #service.url = row[9]
-            service.phone = row[31]
+            service.phone = row[31] && !row[31].start_with?('0','+44') ? '0' << row[31] : row[31]
             service.email = row[30]
             service.postcode = row[38]
 
@@ -57,10 +57,10 @@ task :csv => :environment do
 
             service.key_point_1 = row[43].capitalize #availabiility
             service.key_point_2 = 'Areas covered ' << row[44] #areas
-            service.key_point_3 = 'Further support offered ' << row[45] #further support
-            puts service.inspect
+            service.key_point_3 = 'Further support required: ' << row[45] #further support
         end
 
         service.save
     end
+    puts '🎉 Done. 🎉'
 end
