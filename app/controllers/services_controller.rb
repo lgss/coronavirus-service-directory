@@ -12,11 +12,22 @@ class ServicesController < ApplicationController
             @result = results.first.formatted_address
             @coordinates = Geocoder.coordinates(params[:postcode])
             if params[:categories]
-                @services = Service
-                .where("category && ARRAY[?]::varchar[]", params[:categories])
-                .near(results.first.coordinates, 200)
+                @services = Service.where("category && ARRAY[?]::varchar[]", params[:categories])
+                if !params[:individual].present? and params[:group].present?
+                    @services = @services.filter_by_who(params[:group])
+                end
+                if params[:individual].present? and !params[:group].present?
+                    @services = @services.filter_by_who(params[:individual])
+                end
+                @services = @services.near(results.first.coordinates, 200)
             else
                 @services = Service.near(results.first.coordinates, 200)
+                if !params[:individual].present? and params[:group].present?
+                    @services = @services.filter_by_who(params[:group])
+                end
+                if params[:individual].present? and !params[:group].present?
+                    @services = @services.filter_by_who(params[:individual])
+                end
                 # byebug
             end
         else
