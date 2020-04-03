@@ -40,26 +40,27 @@ task :csv => :environment do
 
             #puts service.inspect
         else
+            
             # business
-            service.name = row[28]
-            service.description = 'Contact ' << row[29]
+            service.name = row[27]
+            service.description = 'Contact ' << row[28]
             #service.url = row[9]
-            service.phone = row[31] && !row[31].start_with?('0','+44') ? '0' << row[31] : row[31]
-            service.email = row[30]
-            service.postcode = row[38]
-
+            service.phone = row[30] && !row[30].start_with?('0','+44') ? '0' << row[30] : row[30]
+            service.email = row[29] ? row[29] : ""
+            iputs service.inspect if service.name === 'Nikki Berridge'
+            service.postcode = row[37] ? row[37] : row[32]
             # categories
             categories = []
-            row[42].delete! '[]' # remove existing array brackets
-            categories = row[42].split(",") # comma separated so split the string
+            row[40].delete! '[]' # remove existing array brackets
+            categories = row[40].split(",") # comma separated so split the string
             categories.each(&:lstrip!) # strip whitespace on each array index
             service.category = categories # add to service object
 
-            service.key_point_1 = row[43].capitalize #availabiility
-            service.key_point_2 = 'Areas covered ' << row[44] #areas
-            service.key_point_3 = 'Further support required: ' << row[45] #further support
+            service.key_point_1 = row[41].capitalize #availabiility
+            service.key_point_2 = 'Areas covered ' << row[42] #areas
+            service.key_point_3 = 'Further support required: ' << row[43] #further support
         end
-
+        puts service.inspect
         service.save
     end
     puts '🎉 Done. 🎉'
